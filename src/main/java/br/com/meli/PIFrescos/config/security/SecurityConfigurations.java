@@ -49,11 +49,12 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/auth").permitAll()
 			//InBoundOrderController
 			.antMatchers(HttpMethod.POST, "/fresh-products/users").permitAll()
+				.antMatchers( HttpMethod.POST,"/fresh-products/orders*").hasAnyAuthority( "BUYER", "ADMIN")
 			.antMatchers( "/fresh-products/inboundorder").hasAnyAuthority("SUPERVISOR", "ADMIN")
 			.antMatchers( "/fresh-products/inboundorder/*").hasAnyAuthority("SUPERVISOR", "ADMIN")
 			//Product
-			.antMatchers( "/fresh-products/").hasAnyAuthority("SUPERVISOR", "ADMIN")
-			.antMatchers( "/fresh-products/*").hasAnyAuthority("SUPERVISOR", "ADMIN")
+			.antMatchers( "/fresh-products/").hasAnyAuthority("SUPERVISOR", "BUYER", "ADMIN")
+			.antMatchers( "/fresh-products/*").hasAnyAuthority("SUPERVISOR", "BUYER","ADMIN")
 			.antMatchers( "/fresh-products/batch/list*").hasAnyAuthority("SUPERVISOR", "ADMIN")
 			//User
 			.antMatchers(HttpMethod.GET, "/fresh-products/users").hasAnyAuthority("SUPERVISOR", "ADMIN")
@@ -61,8 +62,9 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 			//Warehouse
 			.antMatchers("/fresh-products/warehouse").hasAnyAuthority("SUPERVISOR", "ADMIN")
 			.antMatchers("/fresh-products/warehouse/*").hasAnyAuthority("SUPERVISOR", "ADMIN")
-
-
+			//Appointment
+			.antMatchers("/fresh-products/orders/appointments*").hasAnyAuthority("BUYER", "SUPERVISOR","ADMIN")
+			.antMatchers("/fresh-products/orders/appointments*").hasAnyAuthority("SUPERVISOR","ADMIN")
 		.anyRequest().authenticated()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
