@@ -49,6 +49,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/auth").permitAll()
 			//InBoundOrderController
 			.antMatchers(HttpMethod.POST, "/fresh-products/users").permitAll()
+				.antMatchers( "/swagger*").permitAll()
 				.antMatchers( HttpMethod.POST,"/fresh-products/orders*").hasAnyAuthority( "BUYER", "ADMIN")
 			.antMatchers( "/fresh-products/inboundorder").hasAnyAuthority("SUPERVISOR", "ADMIN")
 			.antMatchers( "/fresh-products/inboundorder/*").hasAnyAuthority("SUPERVISOR", "ADMIN")
