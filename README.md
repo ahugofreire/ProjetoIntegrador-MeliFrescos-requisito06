@@ -13,10 +13,17 @@ O projeto principal se destina a simular uma nova modalidade de armazenamento, t
 - Docker 
 ### Instruções para a instalação:
 
-Para acesso local do banco de dados, é necessário a inserção da variável de ambiente abaixo na IDE:
+Para iniciar o projeto será necessário executar o docker.
+
+Dentro do diretorio raiz do projeto executar o comando abaixo.
 
 ```sh
-HOST=jdbc:postgresql://localhost:5432/PIDB;USERNAME=(seu_nome_de_usuário);PASSWORD=(sua_senha_definida)
+docker-compose up -d 
+```
+Para executar o projeto será necessárioconfigurar as variavies de ambiente, na IDE ou no sistema operacional.
+```sh
+
+HOST=jdbc:postgresql://localhost:5432/pidb;USERNAME=(seu_nome_de_usuário);PASSWORD=(sua_senha_definida)
 ```
 
 ### Collection com os End-points no Postman:
@@ -30,6 +37,8 @@ src/main/resources/requisito-06.postman_collection.json
 ### Diagramas de Classe
 
 ![R6](https://user-images.githubusercontent.com/83099706/167030128-886b0e84-b345-493b-a321-8947df9999f4.png)
+### Diagrama de Entidade-Relacionamento
+![ERD](https://user-images.githubusercontent.com/83099706/167040065-661b4606-9f93-4af0-a5df-aeafc17058b0.png)
 
 ### Documentação, Referencial utilizados e Cronologia dos requisitos:
 
