@@ -18,14 +18,14 @@ public class Address {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
-  @NotNull(message = "O nome da rua não pode ser nulo.")
+  @NotNull(message = "street can not be null.")
   private String street;
   private String number;
 
-  @NotNull(message = "O nome da região não pode ser nulo.")
+  @NotNull(message = "region not be null.")
   private String region;
 
-  @NotNull(message = "O CEP não pode ser nulo.")
+  @NotNull(message = "zipcode can not be null.")
   private String zipcode;
 
 }
