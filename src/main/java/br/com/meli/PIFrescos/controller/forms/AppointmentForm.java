@@ -2,15 +2,17 @@ package br.com.meli.PIFrescos.controller.forms;
 
 import br.com.meli.PIFrescos.models.Address;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-
 @Getter @Setter
 public class AppointmentForm {
+    @NotNull( message = "Can not be null")
     private Integer purchaseOrderId;
+    @NotNull(message = "Can not be null")
     @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd' 'HH:mm:ss")
     private LocalDateTime appointmentDate;
     @NotNull(message = "Receiver can not be null")
