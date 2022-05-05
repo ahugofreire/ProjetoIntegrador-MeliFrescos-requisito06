@@ -1,15 +1,16 @@
-# ProjetoIntegrador - Mercado Livre: Frescos
+# ProjetoIntegrador - Mercado Livre: Frescos (Requisito 06)
 
+Este Projeto adiciona a funcionalidade de agendamento para as entregas dos pedidos.
 
-Este Projeto Integrador se destina a simular uma nova modalidade de armazenamento, transporte e comercialização de produtos frescos, congelados e refrigerados do Mercado Livre através de uma API REST em Java com Spring Boot e suas respectivas dependências.
+O projeto principal se destina a simular uma nova modalidade de armazenamento, transporte e comercialização de produtos frescos, congelados e refrigerados do Mercado Livre através de uma API REST em Java com Spring Boot e suas respectivas dependências.
 
-### Características e Tecnologias:
+### Tecnologias Utilizadas:
 - Java 11;
 - Spring Security e Token JWT;
 - Spring Validations;
 - Spring Data JPA;
-- Banco de Dados relacional Postgres (local).
-
+- Banco de Dados relacional Postgres (local);
+- Docker 
 ### Instruções para a instalação:
 
 Para acesso local do banco de dados, é necessário a inserção da variável de ambiente abaixo na IDE:
@@ -23,9 +24,8 @@ HOST=jdbc:postgresql://localhost:5432/PIDB;USERNAME=(seu_nome_de_usuário);PASSW
 Encontra-se dentro do projeto, no diretório abaixo:
 
 ```sh
-src/main/resources/PostmanCollection.json
+src/main/resources/requisito-06.postman_collection.json
 ```
-
 
 ### Diagramas de Classe
 
