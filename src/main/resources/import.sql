@@ -44,10 +44,11 @@ INSERT INTO batch(current_temperature, minimum_temperature, unit_price, initial_
 INSERT INTO batch(current_temperature, minimum_temperature, unit_price, initial_quantity, current_quantity, manufacturing_date, due_date, inbound_order_order_number, product_product_id) VALUES (15, 10, 2, 4, 4, '2022-03-25', '2022-04-25', 5, 1);
 
 -- USERS
+INSERT INTO address(number, region, street, zipcode) VALUES('3003', 'Osasco', 'Av. Nações unidas', '01313-000');
 INSERT INTO users(fullname, email, password) VALUES('Jose Alfredo', 'jose@gmail.com', '$2a$10$GtzVniP9dVMmVW2YxytuvOG9kHu9nrwAxe8/UXSFkaECmIJ4UJcHy');
 INSERT INTO users(fullname, email, password) VALUES('Marcos Silva', 'marcos@gmail.com', '$2a$10$GtzVniP9dVMmVW2YxytuvOG9kHu9nrwAxe8/UXSFkaECmIJ4UJcHy');
 INSERT INTO users(fullname, email, password) VALUES('Geovane Marquies', 'geovane@gmail.com', '$2a$10$GtzVniP9dVMmVW2YxytuvOG9kHu9nrwAxe8/UXSFkaECmIJ4UJcHy');
-INSERT INTO users(fullname, email, password) VALUES('Meli', 'meli@gmail.com', '$2a$10$GtzVniP9dVMmVW2YxytuvOG9kHu9nrwAxe8/UXSFkaECmIJ4UJcHy');
+INSERT INTO users(fullname, email, password, address_id) VALUES('Meli', 'meli@gmail.com', '$2a$10$GtzVniP9dVMmVW2YxytuvOG9kHu9nrwAxe8/UXSFkaECmIJ4UJcHy', 1);
 
 -- PROFILE
 INSERT INTO profile(name) VALUES('SUPERVISOR');
@@ -61,3 +62,6 @@ INSERT INTO users_profiles(user_id, profiles_id) VALUES(3, 3);
 INSERT INTO users_profiles(user_id, profiles_id) VALUES(2, 2);
 INSERT INTO users_profiles(user_id, profiles_id) VALUES(4, 4);
 
+-- Appointment Delivery
+INSERT INTO address(number, region, street, zipcode) VALUES('1578', 'São Paulo', 'Av. Paulista', '01311-000');
+INSERT INTO users(fullname, email, password, role, address_id) VALUES('John Doe', 'john@gmail.com', '$2a$10$GtzVniP9dVMmVW2YxytuvOG9kHu9nrwAxe8/UXSFkaECmIJ4UJcHy', 'BUYER', 2);
