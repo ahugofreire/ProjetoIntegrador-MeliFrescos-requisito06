@@ -27,11 +27,9 @@ src/main/resources/PostmanCollection.json
 ```
 
 
-- Quadro Kanban com as tasks realizadas [Disponível aqui](https://github.com/juliocesargama/ProjetoIntegrador-MeliFrescos/projects/1).
-
 ### Diagramas de Classe
-![DC](https://user-images.githubusercontent.com/70298438/166481858-c235e35d-9865-4d2c-a556-cd2ab11989a9.jpg)
 
+![R6](https://user-images.githubusercontent.com/83099706/167030128-886b0e84-b345-493b-a321-8947df9999f4.png)
 
 ### Documentação, Referencial utilizados e Cronologia dos requisitos:
 
