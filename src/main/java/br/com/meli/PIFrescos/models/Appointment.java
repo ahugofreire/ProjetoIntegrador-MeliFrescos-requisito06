@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Builder
 @Entity
 @Table(name = "appointments")
-public class AppointmentDelivery {
+public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -26,4 +26,7 @@ public class AppointmentDelivery {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "shipping_id", referencedColumnName = "id")
+    private Shipping shipping;
 }
