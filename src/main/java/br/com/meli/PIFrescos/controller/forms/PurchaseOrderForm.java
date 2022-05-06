@@ -1,15 +1,14 @@
 package br.com.meli.PIFrescos.controller.forms;
 
 import br.com.meli.PIFrescos.config.security.TokenService;
-import br.com.meli.PIFrescos.models.OrderStatus;
 import br.com.meli.PIFrescos.models.ProductsCart;
 import br.com.meli.PIFrescos.models.PurchaseOrder;
 import br.com.meli.PIFrescos.models.User;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,7 +17,7 @@ import java.util.stream.Collectors;
 public class PurchaseOrderForm {
 
     @NotNull(message = "ProductsCart list field can't be empty")
-    private List<ProductCartForm> cartList;
+    private List<@Valid ProductCartForm> cartList;
 
     /**
      * ConvertePurchaseOrderForm para PurchaseOrder.

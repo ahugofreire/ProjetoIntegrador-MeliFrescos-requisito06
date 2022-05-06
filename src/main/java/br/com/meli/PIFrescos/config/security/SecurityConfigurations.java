@@ -47,6 +47,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/auth").permitAll()
+            //PurchaseOrder
+			.antMatchers( "/fresh-products/orders*").hasAnyAuthority("SUPERVISOR", "ADMIN", "BUYER")
 			//InBoundOrderController
 			.antMatchers(HttpMethod.POST, "/fresh-products/users").permitAll()
 				.antMatchers( HttpMethod.POST,"/fresh-products/orders*").hasAnyAuthority( "BUYER", "ADMIN")

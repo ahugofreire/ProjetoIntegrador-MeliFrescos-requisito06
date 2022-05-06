@@ -1,21 +1,26 @@
 package br.com.meli.PIFrescos.controller.forms;
 
 import br.com.meli.PIFrescos.models.Batch;
-import br.com.meli.PIFrescos.models.Product;
 import br.com.meli.PIFrescos.models.ProductsCart;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Setter
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class ProductCartForm {
 
+    @NotNull(message = "O batchId não pode ser nulo.")
     private Integer batchId;
+    @NotNull(message = "O batchId não pode ser nulo.")
+    @Min(value = 0, message = "A quantidade não deve ser negativa.")
     private Integer quantity;
-
-    private String productName; // podemos usar o productName no lugar do id
 
     /**
      * Converter a compra do usuario para o ProductsCart, o qual contem toda informaçao necessaria.

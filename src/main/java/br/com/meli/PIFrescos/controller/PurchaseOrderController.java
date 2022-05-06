@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class PurchaseOrderController {
      */
 
     @PostMapping("")
-    public ResponseEntity<TotalPriceDTO> postOrder(@RequestBody PurchaseOrderForm purchaseOrderForm){
+    public ResponseEntity<TotalPriceDTO> postOrder(@RequestBody @Valid PurchaseOrderForm purchaseOrderForm){
 
         PurchaseOrder order = purchaseOrderForm.convertToEntity(tokenService);
         PurchaseOrder savedOrder = service.save(order);
@@ -52,7 +53,7 @@ public class PurchaseOrderController {
      */
 
     @PutMapping
-    public ResponseEntity<TotalPriceDTO> putOrder(@RequestBody PurchaseOrderForm form) {
+    public ResponseEntity<TotalPriceDTO> putOrder(@RequestBody @Valid PurchaseOrderForm form) {
         PurchaseOrder order = form.convertToEntity(tokenService);
         PurchaseOrder savedOrder = service.updateCartList(order);
         BigDecimal totalPrice = service.calculateTotalPrice(savedOrder);

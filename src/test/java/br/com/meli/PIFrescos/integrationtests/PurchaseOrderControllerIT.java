@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -278,11 +279,11 @@ public class PurchaseOrderControllerIT {
                 + " }";
 
         Mockito.when(userRepository.findById(any())).thenReturn(Optional.ofNullable(userMock));
-
-        Mockito.when(purchaseOrderRepository.findByUserId(any())).thenReturn(Optional.ofNullable(purchaseOrderMock));
+        Mockito.when(purchaseOrderRepository.getPurchaseOrdersByUserIdAndOrderStatusIsOPENED(any())).thenReturn(purchaseOrderMock);
+        Mockito.when(purchaseOrderRepository.getPurchaseOpenedByUserId(any())).thenReturn(Collections.singletonList(purchaseOrderMock));
         Mockito.when(batchRepository.findByBatchNumber(any())).thenReturn(productsCartMock.getBatch());
         Mockito.when(batchRepository.findByBatchNumber(any())).thenReturn(productsCartMock2.getBatch());
-
+        Mockito.when(userRepository.findByEmail(any())).thenReturn(Optional.of(userMock));
         purchaseOrderMock.setCartList(List.of(productsCartMock, productsCartMock3));
 
         Mockito.when(userRepository.findByEmail(any())).thenReturn(Optional.of(userMock));
@@ -315,7 +316,11 @@ public class PurchaseOrderControllerIT {
                 + " }"
                 + " ]"
                 + " }";
-
+        Mockito.when(userRepository.findById(any())).thenReturn(Optional.ofNullable(userMock));
+        Mockito.when(purchaseOrderRepository.getPurchaseOrdersByUserIdAndOrderStatusIsOPENED(any())).thenReturn(null);
+        Mockito.when(purchaseOrderRepository.getPurchaseOpenedByUserId(any())).thenReturn(Collections.singletonList(purchaseOrderMock));
+        Mockito.when(userRepository.findByEmail(any())).thenReturn(Optional.of(userMock));
+        Mockito.when(purchaseOrderRepository.save(any())).thenReturn(purchaseOrderMock);
         Mockito.when(userRepository.findById(any())).thenReturn(Optional.ofNullable(userMock));
         productsCartMock2.getBatch().setCurrentQuantity(0);
         Mockito.when(batchRepository.findByBatchNumber(1)).thenReturn(productsCartMock.getBatch());

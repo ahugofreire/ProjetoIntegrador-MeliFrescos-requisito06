@@ -71,14 +71,14 @@ public class PurchaseOrderServiceTest {
         mockBatch1 = Batch.builder()
                 .batchNumber(1)
                 .product(product1)
-                .currentQuantity(10)
+                .currentQuantity(20)
                 .unitPrice(BigDecimal.valueOf(10.0))
                 .build();
 
         mockBatch2 = Batch.builder()
                 .batchNumber(2)
                 .product(product1)
-                .currentQuantity(10)
+                .currentQuantity(20)
                 .unitPrice(BigDecimal.valueOf(25.0))
                 .build();
 
@@ -97,7 +97,7 @@ public class PurchaseOrderServiceTest {
         productsCart2.setBatch(mockBatch2);
         productsCart2.setQuantity(9);
 
-        productsCartList = Arrays.asList(productsCart1, productsCart2);
+        productsCartList = new ArrayList<>(Arrays.asList(productsCart1, productsCart2));
 
         purchaseOrder.setId(1);
         purchaseOrder.setUser(user1);
@@ -124,7 +124,11 @@ public class PurchaseOrderServiceTest {
 
     @Test
     void shouldSavePurchaseOrderWhenUserAlreadyHasAnOrder(){
-        Mockito.when(purchaseOrderRepository.getPurchaseOpenedByUserId(any())).thenReturn(Collections.singletonList(purchaseOrder));
+        PurchaseOrder oldPurchaseOder = new PurchaseOrder();
+        List<ProductsCart> oldProductsCartList = new ArrayList<>();
+        oldProductsCartList.add(productsCart1);
+        oldPurchaseOder.setCartList(oldProductsCartList);
+        Mockito.when(purchaseOrderRepository.getPurchaseOpenedByUserId(any())).thenReturn(Collections.singletonList(oldPurchaseOder));
         Mockito.when(purchaseOrderRepository.save(purchaseOrder)).thenReturn(purchaseOrder);
         Mockito.when(batchService.findByBatchNumber(1)).thenReturn(mockBatch1);
         Mockito.when(batchService.findByBatchNumber(2)).thenReturn(mockBatch2);
@@ -305,7 +309,12 @@ public class PurchaseOrderServiceTest {
     void shouldUpdateCartList() {
         productsCart1.setQuantity(3);
         productsCart2.setQuantity(3);
+        PurchaseOrder oldPurchaseOder = new PurchaseOrder();
+        List<ProductsCart> oldProductsCartList = new ArrayList<>();
+        oldProductsCartList.add(productsCart1);
+        oldPurchaseOder.setCartList(oldProductsCartList);
 
+        Mockito.when(purchaseOrderRepository.getPurchaseOpenedByUserId(any())).thenReturn(Collections.singletonList(oldPurchaseOder));
         Mockito.when(batchService.findByBatchNumber(1)).thenReturn(mockBatch1);
         Mockito.when(batchService.findByBatchNumber(2)).thenReturn(mockBatch2);
         Mockito.when(purchaseOrderRepository.save(purchaseOrder)).thenReturn(purchaseOrder);

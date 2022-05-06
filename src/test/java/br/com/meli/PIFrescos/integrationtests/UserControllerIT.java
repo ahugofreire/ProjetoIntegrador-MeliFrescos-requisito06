@@ -147,7 +147,7 @@ public class UserControllerIT {
     public void ShouldPostAnUser() throws Exception{
 
         UserDTO userDTO = new UserDTO(1,"John Doe","john@mercadolivre.com.br",
-                "$2a$10$GtzVniP9dVMmVW2YxytuvOG9kHu9nrwAxe8/UXSFkaECmIJ4UJcHy", UserRole.ADMIN);
+                 List.of(UserRole.ADMIN.toString()));
 
         UserForm form = new UserForm("John Doe", "john@mercadolivre.com.br",
                 "$2a$10$GtzVniP9dVMmVW2YxytuvOG9kHu9nrwAxe8/UXSFkaECmIJ4UJcHy", UserRole.ADMIN);
@@ -187,7 +187,7 @@ public class UserControllerIT {
         form.setAddress(new Address());
 
         UserDTO userDTO = new UserDTO(1,"Alfonso Silva","john@mercadolivre.com.br",
-                "$2a$10$GtzVniP9dVMmVW2YxytuvOG9kHu9nrwAxe8/UXSFkaECmIJ4UJcHy", UserRole.ADMIN);
+                 List.of(UserRole.ADMIN.toString()));
 
         String formString = objectMapper.writeValueAsString(form);
 

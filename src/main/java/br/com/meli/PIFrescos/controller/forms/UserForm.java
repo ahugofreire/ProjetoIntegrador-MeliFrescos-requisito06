@@ -53,6 +53,6 @@ public class UserForm {
       throw new RuntimeException("Profile not found");
     }
 
-    return new User(null, fullname, email, password, address, role, List.of(profile.get()));
+    return new User(null, fullname, email, new BCryptPasswordEncoder().encode(password), address, role, List.of(profile.get()));
   }
 }
