@@ -49,7 +49,6 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/auth").permitAll()
 			//InBoundOrderController
 			.antMatchers(HttpMethod.POST, "/fresh-products/users").permitAll()
-				.antMatchers( "/swagger*").permitAll()
 				.antMatchers( HttpMethod.POST,"/fresh-products/orders*").hasAnyAuthority( "BUYER", "ADMIN")
 			.antMatchers( "/fresh-products/inboundorder").hasAnyAuthority("SUPERVISOR", "ADMIN")
 			.antMatchers( "/fresh-products/inboundorder/*").hasAnyAuthority("SUPERVISOR", "ADMIN")
@@ -66,6 +65,14 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 			//Appointment
 			.antMatchers("/fresh-products/orders/appointments*").hasAnyAuthority("BUYER", "SUPERVISOR","ADMIN")
 			.antMatchers("/fresh-products/orders/appointments*").hasAnyAuthority("SUPERVISOR","ADMIN")
+				.antMatchers("/v2/api-docs",
+						"/configuration/ui",
+						"/swagger-resources/**",
+						"/configuration/security",
+						"/configuration/security",
+						"/swagger-ui.html",
+						"/webjars/**")
+				.permitAll()
 		.anyRequest().authenticated()
 		.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
