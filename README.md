@@ -34,6 +34,11 @@ Encontra-se dentro do projeto, no diretório abaixo:
 src/main/resources/requisito-06.postman_collection.json
 ```
 
+### Documentação com swagger
+```sh
+http://localhost:8080/api/v1/swagger-ui.html
+http://localhost:8080/api/v1/v2/api-docs
+```
 ### Diagramas de Classe
 
 ![R6](https://user-images.githubusercontent.com/83099706/167030128-886b0e84-b345-493b-a321-8947df9999f4.png)
