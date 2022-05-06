@@ -4,6 +4,7 @@ import br.com.meli.PIFrescos.models.Shipping;
 import br.com.meli.PIFrescos.models.ShippingStatus;
 import br.com.meli.PIFrescos.repository.ShippingRepository;
 import br.com.meli.PIFrescos.service.ShippingServiceImpl;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,9 +14,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 
@@ -54,6 +57,15 @@ public class ShippingServiceTests {
     }
 
     @Test
+    @DisplayName("shouldReturnExceptionWhenShippingListIsEmpty")
+    public void shouldReturnExceptionWhenShippingListIsEmpty() {
+
+        RuntimeException exception = Assertions.assertThrows(EntityNotFoundException.class, () -> shippingService.findAll());
+
+        assertThat(exception.getMessage()).isEqualTo("Shipping Not Found");
+    }
+
+    @Test
     @DisplayName("shouldBeAbleUpdateShippingById")
     public void shouldBeAbleUpdateShippingById() {
         Shipping shippingMock2 = new Shipping();
@@ -65,7 +77,7 @@ public class ShippingServiceTests {
         Mockito.when(shippingRepository.findById(1)).thenReturn(java.util.Optional.of(shippingMock));
 
 
-        Mockito.when(shippingRepository.save(any())).thenReturn(shippingMock);
+        Mockito.when(shippingRepository.save(any())).thenReturn(shippingMock2);
 
         Shipping shipping = shippingService.update(1, shippingMock2);
 

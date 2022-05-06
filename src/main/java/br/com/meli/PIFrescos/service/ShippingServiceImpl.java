@@ -6,6 +6,7 @@ import br.com.meli.PIFrescos.service.interfaces.IShippingService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -25,6 +26,12 @@ public class ShippingServiceImpl implements IShippingService {
 
     @Override
     public List<Shipping> findAll() {
-        return this.shippingRepository.findAll();
+        List<Shipping> shippingList =  this.shippingRepository.findAll();
+
+        if(shippingList.isEmpty()) {
+            throw new EntityNotFoundException("Shipping Not Found");
+        }
+
+        return  shippingList;
     }
 }

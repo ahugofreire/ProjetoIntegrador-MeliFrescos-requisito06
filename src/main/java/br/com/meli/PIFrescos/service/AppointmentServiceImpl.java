@@ -22,7 +22,13 @@ public class AppointmentServiceImpl implements IAppointmentService {
     @Override
     public List<Appointment> findAllUserId(Integer userid) {
 
-        return this.appointmentRepository.findAllByPurchaseOrder_UserId(userid);
+        List<Appointment> appointments = this.appointmentRepository.findAllByPurchaseOrder_UserId(userid);
+
+        if(appointments.isEmpty()) {
+            throw new EntityNotFoundException("Appointment Not Found");
+        }
+
+        return appointments;
     }
 
     @Override
@@ -72,10 +78,6 @@ public class AppointmentServiceImpl implements IAppointmentService {
     @Override
     public void isValid(Appointment appointment) {
         PurchaseOrder purchaseOrder = this.purchaseOrderService.getById(appointment.getPurchaseOrder().getId());
-
-        if (appointment.getUseRegistrationAddress() && appointment.getAddress() == null) {
-            throw  new RuntimeException("Address must be provided");
-        }
 
         if (purchaseOrder.getOrderStatus() != OrderStatus.FINISHED) {
             throw  new RuntimeException("Order status cannot be open");
